@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📅 Event Scheduler</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h2>➕ Add Event</h2>
+      <form id="event-form">
+        <input type="text" id="title" placeholder="Title" required>
+        <input type="text" id="description" placeholder="Description">
+        <input type="datetime-local" id="start_time" required>
+        <input type="datetime-local" id="end_time" required>
+        <button type="submit">Add</button>
+      </form>
+
+      <div class="reminders">
+        <h3>⏰ Upcoming Reminders</h3>
+        {% for r in reminders %}
+          <div class="reminder-item">
+            <strong>{{ r.title }}</strong><br>
+            {{ r.start_time|format12 }}
+          </div>
+        {% else %}
+          <p>No upcoming events</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="🔍 Search..." value="{{ search or '' }}">
+        <button id="search-btn">Search</button>
+        <button id="clear-search">Clear Filter</button>
+      </div>
+
+      <div id="event-list">
+        {% for e in events %}
+          <div class="event-card" data-id="{{ e.id }}">
+            <h3>{{ e.title }}</h3>
+            <p>{{ e.description }}</p>
+            <p>🕒 {{ e.start_time }} - {{ e.end_time }}</p>
+            <button class="edit-btn">✏️ Edit</button>
+            <button class="delete-btn">🗑️ Delete</button>
+          </div>
+        {% else %}
+          <p>No events found.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2>Edit Event</h2>
+      <input type="text" id="edit-title">
+      <input type="text" id="edit-description">
+      <input type="datetime-local" id="edit-start">
+      <input type="datetime-local" id="edit-end">
+      <button id="save-edit">Save</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+
+</html>
