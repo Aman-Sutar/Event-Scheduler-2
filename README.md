@@ -1,7 +1,4 @@
 
----
-
-```markdown
 # 📅 Event Scheduler Web App
 
 A modern, lightweight event scheduler built with **Flask** and **vanilla JavaScript**.  
@@ -22,8 +19,9 @@ Add, edit, delete, and view upcoming events in a beautiful UI with reminders and
 
 ---
 
-## 📂 Project Structure
 
+## 📂 Project Structure
+```
 📁 your-project/
 │
 ├── app.py                 # Main Flask app
@@ -56,7 +54,7 @@ Add, edit, delete, and view upcoming events in a beautiful UI with reminders and
    ```bash
    git clone https://github.com/Aman-Sutar/Event-Scheduler.git
    cd Event-Scheduler
-  ``
+  
 
 2. **Install dependencies**
 
