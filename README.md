@@ -47,6 +47,7 @@ Add, edit, delete, and view upcoming events in a beautiful UI with reminders and
 
 - Python 3.8+
 - Flask
+- CORS
 
 ### 📦 Setup Instructions
 
@@ -61,6 +62,7 @@ Add, edit, delete, and view upcoming events in a beautiful UI with reminders and
 
    ```bash
    pip install flask
+   pip install flask-cors
    ```
 
 3. **Run the app**
@@ -91,3 +93,7 @@ You can test the API using tools like **Postman** or by interacting directly wit
 ## 💻 Screenshot
 
 ![image](https://github.com/user-attachments/assets/55faff9a-0e97-402f-a4d8-cafa7fb7ddf2)
+
+![image](https://github.com/user-attachments/assets/d31ca215-c512-41be-91c1-adc5226fe758)
+
+
