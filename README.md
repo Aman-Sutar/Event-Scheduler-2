@@ -90,5 +90,4 @@ You can test the API using tools like **Postman** or by interacting directly wit
 
 ## 💻 Screenshot
 
-![Screenshot](assets/screenshot.png) <!-- Add your screenshot if needed -->
-
+![image](https://github.com/user-attachments/assets/55faff9a-0e97-402f-a4d8-cafa7fb7ddf2)
