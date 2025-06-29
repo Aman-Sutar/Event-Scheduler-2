@@ -2,8 +2,10 @@ from flask import Flask, request, render_template, jsonify, redirect
 import json
 from datetime import datetime, timedelta
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes (for front-end testing on a different port/domain)
 DATA_FILE = 'events.json'
 
 def load_events():
@@ -41,21 +43,28 @@ def index():
 
     return render_template('index.html', events=events, reminders=reminders, search=search_query)
 
-@app.route('/events', methods=['POST'])
-def create_event():
-    events = load_events()
-    data = request.get_json()
-    new_event = {
-        'id': str(len(events) + 1),
-        'title': data['title'],
-        'description': data.get('description', ''),
-        'start_time': data['start_time'],
-        'end_time': data['end_time'],
-    }
-    events.append(new_event)
-    save_events(events)
-    return jsonify(new_event), 201
+# Get all events
+@app.route('/events', methods=['GET', 'POST'])
+@app.route('/events/', methods=['GET', 'POST'])  # For routes with trailing slash
+def events():
+    if request.method == 'GET':
+        events = load_events()
+        return jsonify(events)
+    elif request.method == 'POST':
+        events = load_events()
+        data = request.get_json()
+        new_event = {
+            'id': str(len(events) + 1),
+            'title': data['title'],
+            'description': data.get('description', ''),
+            'start_time': data['start_time'],
+            'end_time': data['end_time'],
+        }
+        events.append(new_event)
+        save_events(events)
+        return jsonify(new_event), 201
 
+# Update an existing event
 @app.route('/events/<event_id>', methods=['PUT'])
 def update_event(event_id):
     events = load_events()
@@ -67,6 +76,7 @@ def update_event(event_id):
             return jsonify(event)
     return jsonify({'error': 'Event not found'}), 404
 
+# Delete an event
 @app.route('/events/<event_id>', methods=['DELETE'])
 def delete_event(event_id):
     events = load_events()
@@ -74,12 +84,11 @@ def delete_event(event_id):
     save_events(events)
     return '', 204
 
-
+# Custom template filter for formatting time (12-hour clock)
 @app.template_filter('format12')
 def format12(value):
     dt = datetime.fromisoformat(value)
     return dt.strftime('%I:%M %p, %b %d')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
