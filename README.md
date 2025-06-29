@@ -78,8 +78,10 @@ Add, edit, delete, and view upcoming events in a beautiful UI with reminders and
 
 ## 🧪 Testing
 
-You can test the API using tools like **Postman** or by interacting directly with the frontend UI.
-
+You can test the API using tools like **Postman** or by interacting directly with the frontend UI. 
+```
+Postman Collection:  Event_Scheduler.postman_collection.json
+```
 ---
 
 ## 📝 Notes
