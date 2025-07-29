@@ -22,7 +22,7 @@ Add, edit, delete, and view upcoming events in a beautiful UI with reminders and
 
 ## 📂 Project Structure
 ```
-📁 your-project/
+📁 Event-Scheduler/
 │
 ├── app.py                 # Main Flask app
 ├── events.json            # Event storage (JSON)
