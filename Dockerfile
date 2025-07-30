@@ -5,8 +5,8 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Step 3: Upgrade pip and install dependencies
-RUN pip install --upgrade pip
-RUN pip install -r Event-Scheduler/requirements.txt
+RUN pip install flask
+RUN pip install flask-cors
 
 # Step 4: Expose port 8000 to access the app
 EXPOSE 8000
