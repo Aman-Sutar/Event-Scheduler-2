@@ -85,7 +85,7 @@ window.onload = () => {
   const pad = n => n.toString().padStart(2, '0');
 
   const toDatetimeLocal = dt => {
-    return `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())}T${pad(dt.getHours())}:${pad(dt.getMinutes() + 1)}`;
+    return `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())}T${pad(dt.getHours())}:${pad(dt.getMinutes())}`;
   };
 
   document.getElementById('start_time').value = toDatetimeLocal(now);
@@ -110,3 +110,18 @@ window.onload = () => {
     }
   });
 };
+
+
+// script.js
+const themeToggle = document.getElementById("theme-toggle");
+
+themeToggle.addEventListener("change", function() {
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+
+  // Toggle between light and dark themes
+  if (this.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+});

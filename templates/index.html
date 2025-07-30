@@ -22,7 +22,7 @@
         {% for r in reminders %}
           <div class="reminder-item">
             <strong>{{ r.title }}</strong><br>
-            {{ r.start_time|format12 }}
+            {{ r.start_time }}
           </div>
         {% else %}
           <p>No upcoming events</p>
@@ -36,6 +36,7 @@
         <button id="search-btn">Search</button>
         <button id="clear-search">Clear Filter</button>
       </div>
+
 
       <div id="event-list">
         {% for e in events %}
@@ -65,6 +66,12 @@
       <button onclick="closeModal()">Cancel</button>
     </div>
   </div>
+
+
+    <label class="switch">
+    <input type="checkbox" id="theme-toggle" checked />
+  </label>
+
 
   <script src="/static/script.js"></script>
 </body>

@@ -1,8 +1,36 @@
+/* Global styles for both light and dark themes */
+:root {
+  --background-color-light: #f7f9fc;
+  --text-color-light: #333;
+  --panel-background-light: #ffffff;
+  --button-background-light: #4a90e2;
+  --button-hover-light: #357abd;
+  --event-card-background-light: #f0f4fa;
+  --event-card-border-left-light: #4a90e2;
+  --modal-background-light: rgba(0, 0, 0, 0.4);
+  --input-background-light: #ffffff;
+  --input-border-light: #ccc;
+  --input-text-light: #333;
+
+  --background-color-dark: #181818;
+  --text-color-dark: #e0e0e0;
+  --panel-background-dark: #2e2e2e;
+  --button-background-dark: #4a90e2;
+  --button-hover-dark: #357abd;
+  --event-card-background-dark: #252525;
+  --event-card-border-left-dark: #4a90e2;
+  --modal-background-dark: rgba(0, 0, 0, 0.6);
+  --input-background-dark: #333;
+  --input-border-dark: #444;
+  --input-text-dark: #e0e0e0;
+}
+
+/* Default light theme */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f7f9fc;
-  color: #333;
+  background: var(--background-color-light);
+  color: var(--text-color-light);
 }
 
 .container {
@@ -18,24 +46,14 @@ body {
 .right-panel {
   flex: 1;
   min-width: 300px;
-}
-
-.left-panel {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.right-panel {
-  background: #ffffff;
+  background: var(--panel-background-light);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 h2, h3 {
-  color: #2c3e50;
+  color: var(--text-color-light);
   margin-bottom: 16px;
 }
 
@@ -43,23 +61,26 @@ input[type="text"],
 input[type="datetime-local"],
 button {
   width: 100%;
-  margin: 8px 0;
+  margin: 8px 0 0 -12px;
   padding: 12px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-border-light);
   font-size: 1rem;
+  background-color: var(--input-background-light);
+  color: var(--input-text-light);
 }
 
 button {
-  background-color: #44d57c;
+  background-color: var(--button-background-light);
   color: white;
   border: none;
   cursor: pointer;
+  margin-inline: 0px;
   transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #357abd;
+  background-color: var(--button-hover-light);
 }
 
 #event-list {
@@ -67,8 +88,8 @@ button:hover {
 }
 
 .event-card {
-  background: #f0f4fa;
-  border-left: 6px solid #4a90e2;
+  background: var(--event-card-background-light);
+  border-left: 6px solid var(--event-card-border-left-light);
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
@@ -116,20 +137,8 @@ button:hover {
   min-width: 200px;
   padding: 12px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-border-light);
   font-size: 1rem;
-}
-
-
-.reminders {
-  margin-top: 40px;
-}
-
-.reminder-item {
-  background: #e7f3ff;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 10px;
 }
 
 /* Modal Styles */
@@ -145,7 +154,7 @@ button:hover {
 }
 
 .modal-content {
-  background: #fff;
+  background: var(--panel-background-light);
   padding: 30px;
   border-radius: 16px;
   width: 90%;
@@ -157,4 +166,71 @@ button:hover {
 @keyframes fadeIn {
   from { transform: translateY(-20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
+}
+
+/* Reminder styles */
+.reminders {
+  margin-top: 40px;
+}
+
+.reminder-item {
+  background: var(--event-card-background-light);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Styling the toggle switch */
+.switch {
+  --false: #63a2ff;
+  --true: #373737;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+input[type=checkbox] {
+  appearance: none;
+  height: 2.1rem;
+  width: 3.5rem;
+  background-color: #fafafa;
+  position: relative;
+  border: 1px royalblue solid;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+input[type=checkbox]::before {
+  content: '';
+  display: block;
+  height: 1.9em;
+  width: 1.9em;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: calc(1.9em / 2 + .3em);
+  background-color: var(--false);
+  border-radius: 1em;
+  transition: .3s ease;
+}
+
+input[type=checkbox]:checked::before {
+  background-color: var(--true);
+  left: calc(100% - (1.9em / 2 + .3em));
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --background-color-light: var(--background-color-dark);
+  --text-color-light: var(--text-color-dark);
+  --panel-background-light: var(--panel-background-dark);
+  --button-background-light: var(--button-background-dark);
+  --button-hover-light: var(--button-hover-dark);
+  --event-card-background-light: var(--event-card-background-dark);
+  --event-card-border-left-light: var(--event-card-border-left-dark);
+  --modal-background-light: var(--modal-background-dark);
+  --input-background-light: var(--input-background-dark);
+  --input-border-light: var(--input-border-dark);
+  --input-text-light: var(--input-text-dark);
 }
