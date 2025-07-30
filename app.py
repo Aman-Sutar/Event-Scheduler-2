@@ -90,5 +90,6 @@ def format12(value):
     dt = datetime.fromisoformat(value)
     return dt.strftime('%I:%M %p, %b %d')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    # Make sure it listens on 0.0.0.0 (the container's network interface)
+    app.run(host="0.0.0.0", port=5000)

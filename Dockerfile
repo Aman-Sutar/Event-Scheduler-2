@@ -1,15 +1,20 @@
-# Step 1: Use a Python base image
+# Use the slim version of Python 3.9 as the base image
 FROM python:3.9-slim
 
-# Step 2: Set the working directory inside the container
+# Set the working directory to /app
 WORKDIR /app
 
-# Step 3: Upgrade pip and install dependencies
-RUN pip install flask
-RUN pip install flask-cors
+# Copy requirements.txt first to leverage Docker cache efficiently
+COPY requirements.txt .
 
-# Step 4: Expose port 8000 to access the app
-EXPOSE 8000
+# Install dependencies from requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Step 5: Set the command to run the app
-CMD ["python", "Event-Scheduler/app.py"]
+# Copy the rest of the application files into the container
+COPY . .
+
+# Expose a port (if necessary for your app)
+EXPOSE 5000
+
+# Run the app (make sure the file exists and is named correctly)
+CMD ["python", "app.py"]
